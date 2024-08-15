@@ -1,11 +1,26 @@
+// --------------------------------
+// Requirements
+// --------------------------------
+
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { SetUpModule } from './setup.module';
+import { UserController } from './adapters/controllers/user.controller';
+import AuthMiddlewareModule from './infrastructure/di/middleware/auth_middleware.module';
+import { AuthRepositoryModule } from './infrastructure/di/repositories/auth_repository.module';
+import { GetAllUsersUseCasesModule } from './infrastructure/di/use_cases/get_all_users_use_case.module';
+
+// --------------------------------
+// Helpers
+// --------------------------------
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [SetUpModule, AuthRepositoryModule, GetAllUsersUseCasesModule, AuthMiddlewareModule],
+  controllers: [UserController],
 })
-export class AppModule { }
+class AppModule { }
+
+// --------------------------------
+// Public Interface
+// --------------------------------
+
+export { AppModule };
