@@ -2,9 +2,8 @@
 // Requirements
 // --------------------------------
 
-import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { checkEnviroment } from './helpers/utils';
+import { NestFactory } from '@nestjs/core';
 
 // --------------------------------
 // Public Interface
@@ -13,7 +12,11 @@ import { checkEnviroment } from './helpers/utils';
 (async () => {
   const nestApplication = await NestFactory.create(AppModule);
 
-  checkEnviroment();
+  if (!process.env.PORT) throw new Error('PORT is not defined in .env file');
+  if (!process.env.PROJECT_ID) throw new Error('PROJECT_ID is not defined in .env file');
+  if (!process.env.CLIENT_EMAIL) throw new Error('CLIENT_EMAIL is not defined in .env file');
+  if (!process.env.PRIVATE_KEY) throw new Error('PRIVATE_KEY is not defined in .env file');
+
 
   nestApplication.enableCors({ credentials: true, methods: '*', origin: '*' });
 

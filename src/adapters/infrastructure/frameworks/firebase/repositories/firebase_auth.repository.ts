@@ -2,7 +2,6 @@
 // Requirements
 // --------------------------------
 
-
 import * as admin from 'firebase-admin';
 import { Injectable } from '@nestjs/common';
 import { UID } from 'src/core/value_objects/types';

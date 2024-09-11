@@ -2,21 +2,18 @@
 // Requirements
 // --------------------------------
 
-import { ErrorMessages } from "./errors";
-
+import { AdminUserEntity } from "src/core/entities/admin_user.entity";
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
-class ValidationError extends Error {
-    constructor(message: ErrorMessages) {
-        super(message);
-    }
+abstract class BaseAdminUserRepository {
+    abstract getAll(): Promise<AdminUserEntity[]>;
 }
 
 // --------------------------------
 // Public Interface
-// -------------------------------
+// --------------------------------
 
-export default ValidationError;
+export { BaseAdminUserRepository };

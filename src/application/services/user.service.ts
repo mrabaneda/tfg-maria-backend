@@ -2,23 +2,24 @@
 // Requirements
 // --------------------------------
 
-import { Injectable } from '@nestjs/common';
-import { User } from 'src/core/entities/user.entity';
-import { BaseUserRepository } from 'src/core/abstract/repositories/user_repository.abstract';
-import { BaseGetAllUsersUseCase } from 'src/core/abstract/use_cases/get_all_users_use_case.abstract';
+import { Injectable } from "@nestjs/common";
+import { UserEntity } from "src/core/entities/user.entity";
+import { BaseUserService } from "src/core/abstract/services/user_service.abstract";
+import { BaseUserRepository } from "src/core/abstract/repositories/user_repository.abstract";
+
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Injectable()
-class GetAllUsersUseCases implements BaseGetAllUsersUseCase {
+class UserService implements BaseUserService {
 
     constructor(
         private readonly userRepository: BaseUserRepository,
     ) { }
 
-    getAll(): Promise<User[]> {
+    async getAll(): Promise<UserEntity[]> {
         return this.userRepository.getAll();
     }
 }
@@ -27,4 +28,4 @@ class GetAllUsersUseCases implements BaseGetAllUsersUseCase {
 // Public Interface
 // --------------------------------
 
-export { GetAllUsersUseCases };
+export { UserService };

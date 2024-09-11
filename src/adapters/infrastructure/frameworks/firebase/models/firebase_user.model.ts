@@ -4,7 +4,7 @@
 
 import { DocumentScheme } from "src/helpers/constants";
 import { ImageID, UID } from "src/core/value_objects/types";
-import { PreferencesTypeEnum } from "src/core/value_objects/preferences_type_enum_value";
+import { FirebasePreferencesTypeEnum } from "../enums/firebase_preferences_type.enum";
 
 // --------------------------------
 // Helpers
@@ -14,7 +14,7 @@ interface FirebaseUserModel {
     userId: UID;
     imageId: ImageID;
     name: string;
-    preferences: PreferencesTypeEnum;
+    preferences: FirebasePreferencesTypeEnum;
     createdAt: Date;
     updatedAt: Date;
 }

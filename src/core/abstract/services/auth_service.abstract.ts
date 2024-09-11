@@ -2,18 +2,18 @@
 // Requirements
 // --------------------------------
 
-import { User } from "src/core/entities/user.entity";
+import { UID } from "src/core/value_objects/types";
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
-abstract class BaseGetAllUsersUseCase {
-    abstract getAll(): Promise<User[]>;
+abstract class BaseAuthService {
+    abstract verifyTokenId(token: string): Promise<UID>;
 }
 
 // --------------------------------
 // Public Interface
 // --------------------------------
 
-export { BaseGetAllUsersUseCase };
+export default BaseAuthService;

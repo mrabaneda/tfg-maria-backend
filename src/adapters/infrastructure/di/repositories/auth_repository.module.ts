@@ -4,7 +4,7 @@
 
 import { Module } from '@nestjs/common';
 import BaseAuthRepository from 'src/core/abstract/repositories/auth_repository.abstract';
-import FirebaseAuthRepository from 'src/infrastructure/frameworks/firebase/repositories/firebase_auth.repository';
+import FirebaseAuthRepository from 'src/adapters/infrastructure/frameworks/firebase/repositories/firebase_auth.repository';
 
 // --------------------------------
 // Helpers

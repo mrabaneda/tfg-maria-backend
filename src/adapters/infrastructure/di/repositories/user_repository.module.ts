@@ -4,7 +4,7 @@
 
 import { Module } from '@nestjs/common';
 import { BaseUserRepository } from 'src/core/abstract/repositories/user_repository.abstract';
-import FirebaseUserRepository from 'src/infrastructure/frameworks/firebase/repositories/firebase_user.repository';
+import FirebaseUserRepository from 'src/adapters/infrastructure/frameworks/firebase/repositories/firebase_user.repository';
 
 // --------------------------------
 // Helpers

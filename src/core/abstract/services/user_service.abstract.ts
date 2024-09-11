@@ -8,7 +8,7 @@ import { UserEntity } from "src/core/entities/user.entity";
 // Helpers
 // --------------------------------
 
-abstract class BaseUserRepository {
+abstract class BaseUserService {
     abstract getAll(): Promise<UserEntity[]>;
 }
 
@@ -16,4 +16,4 @@ abstract class BaseUserRepository {
 // Public Interface
 // --------------------------------
 
-export { BaseUserRepository };
+export { BaseUserService };

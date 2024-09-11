@@ -2,18 +2,16 @@
 // Requirements
 // --------------------------------
 
-import { ImageID, UID } from "../value_objects/types";
-import { PreferencesTypeEnum } from "../value_objects/preferences_type_enum_value";
+import { UID } from "../value_objects/types";
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
-interface UserEntity {
+interface AdminUserEntity {
     userId: UID;
-    imageId: ImageID;
     name: string;
-    preferences: PreferencesTypeEnum;
+    email: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -22,4 +20,4 @@ interface UserEntity {
 // Public Interface
 // --------------------------------
 
-export { UserEntity };
+export { AdminUserEntity };

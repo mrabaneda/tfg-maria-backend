@@ -2,10 +2,9 @@
 // Requirements
 // --------------------------------
 
-import { handleException } from 'src/helpers/utils';
-import { User } from 'src/core/entities/user.entity';
+import { UserEntity } from 'src/core/entities/user.entity';
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
-import { BaseGetAllUsersUseCase } from 'src/core/abstract/use_cases/get_all_users_use_case.abstract';
+import { GetAllUsersUseCase } from 'src/application/use_cases/get_all_users_use_case';
 
 // --------------------------------
 // Helpers
@@ -13,15 +12,15 @@ import { BaseGetAllUsersUseCase } from 'src/core/abstract/use_cases/get_all_user
 
 @Controller('users')
 class UserController {
-    constructor(private readonly getAllUsersUseCases: BaseGetAllUsersUseCase) { }
+    constructor(private readonly getAllUsersUseCases: GetAllUsersUseCase) { }
 
     @Get('getAll')
     @HttpCode(HttpStatus.OK)
-    getAllUsers(): Promise<User[]> {
+    async getAllUsers(): Promise<UserEntity[]> {
         try {
-            return this.getAllUsersUseCases.getAll();
+            return await this.getAllUsersUseCases.execute();
         } catch (error) {
-            handleException(error);
+            throw (error);
         }
     }
 }
