@@ -3,9 +3,9 @@
 // --------------------------------
 
 import { UserEntity } from "src/core/entities/user.entity";
-import { FirebaseUserModel } from "../models/firebase_user.model";
 import { FirebasePreferencesTypeEnum } from "../enums/firebase_preferences_type.enum";
 import { PreferencesTypeEnum } from "src/core/value_objects/preferences_type_enum_value";
+import { FirebaseUserModel, FirebaseUserModelSchema } from "../models/firebase_user.model";
 
 
 // --------------------------------
@@ -13,18 +13,18 @@ import { PreferencesTypeEnum } from "src/core/value_objects/preferences_type_enu
 // --------------------------------
 
 class FirebaseUserFactory {
-    userModelToEntity(userModel: FirebaseUserModel): UserEntity {
+    static userModelToEntity(userModel: FirebaseUserModel): UserEntity {
         return {
-            userId: userModel.userId,
-            imageId: userModel.imageId,
-            name: userModel.name,
-            preferences: this._usermodelPreferencesTypeToEntity(userModel.preferences),
-            createdAt: new Date(userModel.createdAt),
-            updatedAt: new Date(userModel.updatedAt),
+            userId: userModel[FirebaseUserModelSchema.fields.userId],
+            imageId: userModel[FirebaseUserModelSchema.fields.imageId],
+            name: userModel[FirebaseUserModelSchema.fields.name],
+            preferences: FirebaseUserFactory._usermodelPreferencesTypeToEntity(userModel.preferences),
+            createdAt: userModel[FirebaseUserModelSchema.fields.createdAt],
+            updatedAt: userModel[FirebaseUserModelSchema.fields.updatedAt],
         }
     }
 
-    private _usermodelPreferencesTypeToEntity(preferences: FirebasePreferencesTypeEnum): PreferencesTypeEnum {
+    private static _usermodelPreferencesTypeToEntity(preferences: FirebasePreferencesTypeEnum): PreferencesTypeEnum {
         switch (preferences) {
             case FirebasePreferencesTypeEnum.AUDIO:
                 return PreferencesTypeEnum.AUDIO;

@@ -8,6 +8,7 @@ import { Injectable } from '@nestjs/common';
 import { UserEntity } from 'src/core/entities/user.entity';
 import { FirebaseUserFactory } from '../factory/firebase_user.factory';
 import { BaseUserRepository } from 'src/core/abstract/repositories/user_repository.abstract';
+import { FirebaseUserModel } from '../models/firebase_user.model';
 
 // --------------------------------
 // Helpers
@@ -15,21 +16,12 @@ import { BaseUserRepository } from 'src/core/abstract/repositories/user_reposito
 
 @Injectable()
 class FirebaseUserRepository implements BaseUserRepository {
-    private firebaseUserFactory: FirebaseUserFactory;
 
-    constructor() {
-        this.firebaseUserFactory = new FirebaseUserFactory();
-    }
+    constructor() { }
 
     async getAll(): Promise<UserEntity[]> {
         const snapshot = await firestore().collection('users').get();
-
-        // TODO: remove before finish
-        snapshot.docs.forEach(doc => {
-            console.log(doc.data());
-        });
-
-        return [] as UserEntity[];
+        return snapshot.docs.map((firebaseUser) => FirebaseUserFactory.userModelToEntity(firebaseUser.data() as FirebaseUserModel));
     }
 
 
