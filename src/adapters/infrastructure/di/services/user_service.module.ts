@@ -3,9 +3,9 @@
 // --------------------------------
 
 import { Module } from '@nestjs/common';
-import { UserService } from 'src/application/services/user.service';
+import { UserService } from 'src/core/application/services/user.service';
 import { UserRepositoryModule } from '../repositories/user_repository.module';
-import { BaseUserService } from 'src/core/abstract/services/user_service.abstract';
+import { BaseUserService } from 'src/core/domain/ports/services/user_service.abstract';
 
 // --------------------------------
 // Helpers

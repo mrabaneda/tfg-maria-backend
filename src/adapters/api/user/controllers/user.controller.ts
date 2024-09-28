@@ -2,9 +2,9 @@
 // Requirements
 // --------------------------------
 
-import { UserEntity } from 'src/core/entities/user.entity';
+import { UserEntity } from 'src/core/domain/entities/user.entity';
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
-import { GetAllUsersUseCase } from 'src/application/use_cases/get_all_users_use_case';
+import { GetAllUsersUseCase } from 'src/core/application/use_cases/get_all_users_use_case';
 
 // --------------------------------
 // Helpers
