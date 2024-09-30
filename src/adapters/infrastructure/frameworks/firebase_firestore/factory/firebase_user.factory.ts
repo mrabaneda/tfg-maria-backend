@@ -13,14 +13,14 @@ import { FirebaseUserModel, FirebaseUserModelSchema } from '../../firebase_fires
 
 class FirebaseUserFactory {
   static userModelToEntity(userModel: FirebaseUserModel): UserEntity {
-    return {
-      userId: userModel[FirebaseUserModelSchema.fields.userId],
-      imageId: userModel[FirebaseUserModelSchema.fields.imageId],
-      name: userModel[FirebaseUserModelSchema.fields.name],
-      preferences: FirebaseUserFactory._usermodelPreferencesTypeToEntity(userModel.preferences),
-      createdAt: userModel[FirebaseUserModelSchema.fields.createdAt],
-      updatedAt: userModel[FirebaseUserModelSchema.fields.updatedAt],
-    };
+    return new UserEntity(
+      userModel[FirebaseUserModelSchema.fields.userId],
+      userModel[FirebaseUserModelSchema.fields.imageId],
+      userModel[FirebaseUserModelSchema.fields.name],
+      FirebaseUserFactory._usermodelPreferencesTypeToEntity(userModel.preferences),
+      userModel[FirebaseUserModelSchema.fields.createdAt],
+      userModel[FirebaseUserModelSchema.fields.updatedAt],
+    );
   }
 
   private static _usermodelPreferencesTypeToEntity(preferences: FirebasePreferencesTypeEnum): PreferencesTypeEnum {

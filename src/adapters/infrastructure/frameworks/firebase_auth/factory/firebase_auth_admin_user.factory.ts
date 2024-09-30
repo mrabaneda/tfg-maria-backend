@@ -22,15 +22,15 @@ class FirebaseAuthAdminUserFactory {
   }
 
   static firebaseAuthUserRecordToEntity(firebaseAuthUser: UserRecord): AdminUserEntity {
-    return {
-      userId: firebaseAuthUser.uid,
-      email: firebaseAuthUser.email,
-      name: firebaseAuthUser.displayName,
-      photoUrl: firebaseAuthUser.photoURL ?? null,
-      isAdmin: firebaseAuthUser.customClaims['admin'] ? (firebaseAuthUser.customClaims['admin'] as boolean) : false, 
-      createdAt: new Date(firebaseAuthUser.metadata.creationTime), // TODO: convertir apropiadamente
-      updatedAt: new Date(firebaseAuthUser.metadata.lastRefreshTime), // TODO: igual que arriba
-    };
+    return new AdminUserEntity(
+      firebaseAuthUser.uid,
+      firebaseAuthUser.email,
+      firebaseAuthUser.displayName,
+      firebaseAuthUser.photoURL ?? null,
+      firebaseAuthUser.customClaims['admin'] ? (firebaseAuthUser.customClaims['admin'] as boolean) : false,
+      new Date(firebaseAuthUser.metadata.creationTime),
+      new Date(firebaseAuthUser.metadata.lastRefreshTime),
+    );
   }
 }
 
