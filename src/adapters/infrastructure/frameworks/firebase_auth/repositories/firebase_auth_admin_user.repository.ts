@@ -16,7 +16,8 @@ import { FirebaseAuthAdminUserFactory } from '../factory/firebase_auth_admin_use
 
 @Injectable()
 class FirebaseAuthAdminUserRepository implements BaseAdminUserRepository {
-  
+  constructor() {}
+
   async getOneOrFail(uid: UID): Promise<AdminUserEntity> {
     const firebaseAuthUser = await admin.auth().getUser(uid);
     return FirebaseAuthAdminUserFactory.firebaseAuthUserRecordToEntity(firebaseAuthUser);
@@ -28,7 +29,7 @@ class FirebaseAuthAdminUserRepository implements BaseAdminUserRepository {
   }
 
   async create(createModel: AdminUserCreateModel): Promise<void> {
-    const createRequest = FirebaseAuthAdminUserFactory.createAdminUserModelToCreateUserRequest(createModel);
+    const createRequest = FirebaseAuthAdminUserFactory.createAdminUserModelToCreateRequest(createModel);
     const auth = admin.auth();
     const userRecord = await auth.createUser(createRequest);
     await auth.setCustomUserClaims(userRecord.uid, { admin: true });

@@ -12,7 +12,7 @@ import { AdminUserCreateModel } from 'src/core/domain/models/admin_user_create.m
 // --------------------------------
 
 class FirebaseAuthAdminUserFactory {
-  static createAdminUserModelToCreateUserRequest(model: AdminUserCreateModel): CreateRequest {
+  static createAdminUserModelToCreateRequest(model: AdminUserCreateModel): CreateRequest {
     return {
       displayName: model.name,
       password: model.password,
