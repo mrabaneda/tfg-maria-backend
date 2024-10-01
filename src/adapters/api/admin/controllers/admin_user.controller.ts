@@ -3,7 +3,6 @@
 // --------------------------------
 
 import { Controller, Get, HttpCode, HttpStatus, Delete, Post, Param, Body, UseGuards } from '@nestjs/common';
-import { AdminUserEntity } from 'src/core/domain/entities/admin_user.entity';
 import { CreateAdminUserUseCase } from 'src/core/application/use_cases/create_admin_user.use_case';
 import { DeleteAdminUserUseCase } from 'src/core/application/use_cases/delete_admin_user.use_case';
 import { GetAdminUsersUseCase } from 'src/core/application/use_cases/get_admin_users.use_case';
@@ -17,7 +16,7 @@ import { AdminUserDto } from '../dtos/admin_user.dto';
 // Helpers
 // --------------------------------
 
-//@UseGuards(AdminMiddleware)
+//@UseGuards(AdminMiddleware) // TODO: uncomment when try form front
 @Controller('admin')
 class AdminUserController {
   constructor(
