@@ -42,7 +42,7 @@ class AdminUserEntity {
     return this._userId;
   }
   public get name() {
-    return this.name;
+    return this._name;
   }
   public get email() {
     return this._email;

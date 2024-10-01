@@ -31,10 +31,10 @@ class UserEntity {
       throw new Error('UserEntity: a valid preference is required.');
     }
     if (!this._createdAt) {
-      throw new Error('AdminUserEntity: created date is required.');
+      throw new Error('UserEntity: created date is required.');
     }
     if (!this._updatedAt) {
-      throw new Error('AdminUserEntity: update date is required.');
+      throw new Error('UserEntity: update date is required.');
     }
   }
 
