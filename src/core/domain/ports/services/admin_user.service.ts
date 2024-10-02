@@ -2,9 +2,9 @@
 // Requirements
 // --------------------------------
 
-import { AdminUserEntity } from 'src/core/domain/entities/admin_user.entity';
-import { UID } from 'src/core/domain/value_objects/types';
+import { AdminUserEntity } from '../../entities/admin_user.entity';
 import { AdminUserCreateModel } from '../../models/admin_user_create.model';
+import { UID } from '../../value_objects/types';
 
 // --------------------------------
 // Helpers

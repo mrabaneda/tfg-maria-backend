@@ -2,18 +2,22 @@
 // Requirements
 // --------------------------------
 
-import { UID } from '../../value_objects/types';
+import { PreferencesTypeEnum } from '../enum/preferences_type.enum';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
-abstract class BaseAuthRepository {
-  abstract verifyTokenId(token: string): Promise<UID>;
+interface UserupdateModel {
+  email: string;
+  password: string;
+  name: string;
+  photoUrl: string;
+  preference: PreferencesTypeEnum;
 }
 
 // --------------------------------
 // Public Interface
 // --------------------------------
 
-export default BaseAuthRepository;
+export { UserupdateModel };

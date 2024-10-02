@@ -2,14 +2,14 @@
 // Requirements
 // --------------------------------
 
-import { UID } from "src/core/domain/value_objects/types";
+import { UID } from '../../value_objects/types';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 abstract class BaseAuthService {
-    abstract verifyTokenId(token: string): Promise<UID>;
+  abstract verifyTokenId(token: string): Promise<UID>;
 }
 
 // --------------------------------

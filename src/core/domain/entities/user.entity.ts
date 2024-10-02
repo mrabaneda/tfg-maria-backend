@@ -2,7 +2,7 @@
 // Requirements
 // --------------------------------
 
-import { ImageID, UID } from '../value_objects/types';
+import { UID } from '../value_objects/types';
 import { PreferencesTypeEnum } from '../enum/preferences_type.enum';
 
 // --------------------------------
@@ -12,40 +12,45 @@ import { PreferencesTypeEnum } from '../enum/preferences_type.enum';
 class UserEntity {
   constructor(
     private readonly _userId: UID,
-    private readonly _imageId: ImageID, // TODO: revisar si mejor ruta a bucket
-    private readonly _name: string,
-    private readonly _preference: PreferencesTypeEnum,
+    private readonly _name: string | null,
+    private readonly _email: string | null,
+    private readonly _photoUrl: string | null,
+    private readonly _preference: PreferencesTypeEnum | null,
     private readonly _createdAt: Date,
-    private readonly _updatedAt: Date,
+    private readonly _updatedAt: Date | null,
   ) {
     if (!this._userId || this._userId.trim().length === 0) {
-      throw new Error('UserEntity: userId is required and cannot be empty.');
+      throw new Error('AdminUserEntity: userId is required and cannot be empty.');
     }
-    if (!this._imageId || this._userId.trim().length === 0) {
-      throw new Error('UserEntity: imageId is required and cannot be empty.');
-    }
-    if (!this._name || this._name.trim().length === 0) {
-      throw new Error('UserEntity: name is required and cannot be empty.');
-    }
-    if (!Object.values(PreferencesTypeEnum).includes(this._preference)) {
-      throw new Error('UserEntity: a valid preference is required.');
-    }
+    // TODO: review (screaming)
+    // if (!this._name || this._name.trim().length === 0) {
+    //   throw new Error('AdminUserEntity: name is required and cannot be empty.');
+    // }
+    // if (!this._email || this._email.trim().length === 0) {
+    //   throw new Error('AdminUserEntity: email is required and cannot be empty.');
+    // }
+    // if (!this._isAdmin) {
+    //   throw new Error('AdminUserEntity: isAdmin is required.');
+    // }
     if (!this._createdAt) {
-      throw new Error('UserEntity: created date is required.');
+      throw new Error('AdminUserEntity: created date is required.');
     }
-    if (!this._updatedAt) {
-      throw new Error('UserEntity: update date is required.');
-    }
+    // if (!this._updatedAt) {
+    //   throw new Error('AdminUserEntity: update date is required.');
+    // }
   }
 
   public get userId() {
     return this._userId;
   }
-  public get imageId() {
-    return this._imageId;
-  }
   public get name() {
     return this._name;
+  }
+  public get email() {
+    return this._email;
+  }
+  public get photoUrl() {
+    return this._photoUrl;
   }
   public get preference() {
     return this._preference;
