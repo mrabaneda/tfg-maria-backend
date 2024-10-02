@@ -5,9 +5,9 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { UID } from 'src/core/domain/value_objects/types';
-import { BaseAdminUserRepository } from 'src/core/domain/ports/repositories/admin_user.repository.';
-import { AdminUserCreateModel } from 'src/core/domain/models/admin_user_create.model';
 import { AdminUserEntity } from 'src/core/domain/entities/admin_user.entity';
+import { AdminUserCreateModel } from 'src/core/domain/models/admin_user_create.model';
+import { BaseAdminUserRepository } from 'src/core/domain/ports/repositories/admin_user.repository.';
 import { FirebaseAuthAdminUserFactory } from '../factory/firebase_auth_admin_user.factory';
 
 // --------------------------------
@@ -25,7 +25,10 @@ class FirebaseAuthAdminUserRepository implements BaseAdminUserRepository {
 
   async get(): Promise<AdminUserEntity[]> {
     const firebaseAuthUsers = await admin.auth().listUsers();
-    return firebaseAuthUsers.users.map(FirebaseAuthAdminUserFactory.firebaseAuthUserRecordToEntity);
+    // TODO: revisar
+    return firebaseAuthUsers.users
+      .map((firebaseUser) => FirebaseAuthAdminUserFactory.firebaseAuthUserRecordToEntity(firebaseUser))
+      .filter((userEntity) => userEntity.isAdmin);
   }
 
   async create(createModel: AdminUserCreateModel): Promise<void> {

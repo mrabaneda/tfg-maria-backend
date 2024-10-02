@@ -12,6 +12,23 @@ import { AdminUserCreateModel } from 'src/core/domain/models/admin_user_create.m
 // --------------------------------
 
 class FirebaseAuthAdminUserFactory {
+  static firebaseAuthUserRecordToEntity(firebaseAuthUser: UserRecord): AdminUserEntity {
+    // TODO: REVISAR. screaming FUERTE
+    return new AdminUserEntity(
+      firebaseAuthUser.uid,
+      firebaseAuthUser.displayName as string,
+      firebaseAuthUser.email as string,
+      firebaseAuthUser.photoURL ?? null,
+      firebaseAuthUser.customClaims != null
+        ? firebaseAuthUser.customClaims['admin']
+          ? (firebaseAuthUser.customClaims['admin'] as boolean)
+          : false
+        : null,
+      new Date(firebaseAuthUser.metadata.creationTime),
+      firebaseAuthUser.metadata.lastRefreshTime != null ? new Date(firebaseAuthUser.metadata.lastRefreshTime) : null,
+    );
+  }
+
   static createAdminUserModelToCreateRequest(model: AdminUserCreateModel): CreateRequest {
     return {
       displayName: model.name,
@@ -19,18 +36,6 @@ class FirebaseAuthAdminUserFactory {
       email: model.email,
       photoURL: model.photoUrl,
     };
-  }
-
-  static firebaseAuthUserRecordToEntity(firebaseAuthUser: UserRecord): AdminUserEntity {
-    return new AdminUserEntity(
-      firebaseAuthUser.uid,
-      firebaseAuthUser.email,
-      firebaseAuthUser.displayName,
-      firebaseAuthUser.photoURL ?? null,
-      firebaseAuthUser.customClaims['admin'] ? (firebaseAuthUser.customClaims['admin'] as boolean) : false,
-      new Date(firebaseAuthUser.metadata.creationTime),
-      new Date(firebaseAuthUser.metadata.lastRefreshTime),
-    );
   }
 }
 
