@@ -3,11 +3,11 @@
 // --------------------------------
 
 import { Injectable } from '@nestjs/common';
-import { AdminUserEntity } from 'src/core/domain/entities/admin_user.entity';
-import { AdminUserCreateModel } from 'src/core/domain/models/admin_user_create.model';
-import { BaseAdminUserRepository } from 'src/core/domain/ports/repositories/admin_user.repository.';
-import { BaseAdminUserService } from 'src/core/domain/ports/services/admin_user.service';
-import { UID } from 'src/core/domain/value_objects/types';
+import { UID } from '../../../core/domain/value_objects/types';
+import { AdminUserEntity } from '../../../core/domain/entities/admin_user.entity';
+import { AdminUserCreateModel } from '../../../core/domain/models/admin_user_create.model';
+import { BaseAdminUserRepository } from '../../../core/domain/ports/repositories/admin_user.repository.';
+import { BaseAdminUserService } from '../../../core/domain/ports/services/admin_user.service';
 
 // --------------------------------
 // Helpers
