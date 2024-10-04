@@ -3,16 +3,16 @@
 // --------------------------------
 
 import { Injectable } from '@nestjs/common';
-import { BaseAdminUserService } from 'src/core/domain/ports/services/admin_user.service';
 import { UID } from 'src/core/domain/value_objects/types';
+import { BaseUserService } from 'src/core/domain/ports/services/user_service.abstract';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Injectable()
-class VerifyTokenUseCase {
-  constructor(private readonly adminUserService: BaseAdminUserService) {}
+class VerifyUserTokenUseCase {
+  constructor(private readonly adminUserService: BaseUserService) {}
 
   async execute(token: string): Promise<UID> {
     return await this.adminUserService.verifyToken(token);
@@ -23,4 +23,4 @@ class VerifyTokenUseCase {
 // Public Interface
 // --------------------------------
 
-export { VerifyTokenUseCase };
+export { VerifyUserTokenUseCase };

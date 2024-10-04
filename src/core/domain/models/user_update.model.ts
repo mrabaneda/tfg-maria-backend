@@ -8,7 +8,7 @@ import { PreferencesTypeEnum } from '../enum/preferences_type.enum';
 // Helpers
 // --------------------------------
 
-interface UserupdateModel {
+interface UserUpdateModel {
   email: string;
   password: string;
   name: string;
@@ -20,4 +20,4 @@ interface UserupdateModel {
 // Public Interface
 // --------------------------------
 
-export { UserupdateModel };
+export { UserUpdateModel };

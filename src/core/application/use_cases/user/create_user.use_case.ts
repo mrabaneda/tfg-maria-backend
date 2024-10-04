@@ -3,7 +3,7 @@
 // --------------------------------
 
 import { Injectable } from '@nestjs/common';
-import { UserEntity } from 'src/core/domain/entities/user.entity';
+import { UserCreateModel } from 'src/core/domain/models/user_create.model';
 import { BaseUserService } from 'src/core/domain/ports/services/user_service.abstract';
 
 // --------------------------------
@@ -11,11 +11,11 @@ import { BaseUserService } from 'src/core/domain/ports/services/user_service.abs
 // --------------------------------
 
 @Injectable()
-class GetAllUsersUseCase {
+class CreateUserUseCase {
   constructor(private readonly userService: BaseUserService) {}
 
-  execute(): Promise<UserEntity[]> {
-    return this.userService.getAll();
+  async execute(createModel: UserCreateModel): Promise<void> {
+    return await this.userService.createUser(createModel);
   }
 }
 
@@ -23,4 +23,4 @@ class GetAllUsersUseCase {
 // Public Interface
 // --------------------------------
 
-export { GetAllUsersUseCase };
+export { CreateUserUseCase };
