@@ -3,8 +3,8 @@
 // --------------------------------
 
 import { Module } from '@nestjs/common';
-import { GetAdminUsersUseCase } from 'src/core/application/use_cases/get_admin_users.use_case';
-import { AdminUserServiceModule } from '../services/admin_user_service.module';
+import { GetAdminUsersUseCase } from 'src/core/application/use_cases/admin/get_admin_users.use_case';
+import { AdminUserServiceModule } from '../../services/admin_user_service.module';
 
 // --------------------------------
 // Helpers

@@ -3,17 +3,17 @@
 // --------------------------------
 
 import { Module } from '@nestjs/common';
-import { VerifyTokenUseCase } from 'src/core/application/use_cases/verify_token.use_case';
-import { AdminUserServiceModule } from '../services/admin_user_service.module';
+import { UserServiceModule } from '../../services/user_service.module';
+import { VerifyUserTokenUseCase } from 'src/core/application/use_cases/user/verify_user_token.use_case';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Module({
-  imports: [AdminUserServiceModule],
-  providers: [VerifyTokenUseCase],
-  exports: [VerifyTokenUseCase],
+  imports: [UserServiceModule],
+  providers: [VerifyUserTokenUseCase],
+  exports: [VerifyUserTokenUseCase],
 })
 class VerifyTokenUseCaseModule {}
 

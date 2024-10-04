@@ -3,8 +3,8 @@
 // --------------------------------
 
 import { Module } from '@nestjs/common';
-import { CreateAdminUserUseCase } from 'src/core/application/use_cases/create_admin_user.use_case';
-import { AdminUserServiceModule } from '../services/admin_user_service.module';
+import { AdminUserServiceModule } from '../../services/admin_user_service.module';
+import { VerifyAdminTokenUseCase } from 'src/core/application/use_cases/admin/verify_admin_token.use_case';
 
 // --------------------------------
 // Helpers
@@ -12,13 +12,13 @@ import { AdminUserServiceModule } from '../services/admin_user_service.module';
 
 @Module({
   imports: [AdminUserServiceModule],
-  providers: [CreateAdminUserUseCase],
-  exports: [CreateAdminUserUseCase],
+  providers: [VerifyAdminTokenUseCase],
+  exports: [VerifyAdminTokenUseCase],
 })
-class CreateAdminUserUseCaseModule {}
+class VerifyAdminTokenUseCaseModule {}
 
 // --------------------------------
 // Public Interface
 // --------------------------------
 
-export { CreateAdminUserUseCaseModule };
+export { VerifyAdminTokenUseCaseModule };
