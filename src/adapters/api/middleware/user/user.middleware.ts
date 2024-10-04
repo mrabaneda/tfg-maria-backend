@@ -2,22 +2,22 @@
 // Requirements
 // --------------------------------
 
-import { Injectable, UnauthorizedException, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Request } from 'express';
-import { GetAdminUserUseCase } from '../../../../core/application/use_cases/admin/get_admin_user.use_case';
-import { VerifyAdminTokenUseCase } from '../../../../core/application/use_cases/admin/verify_admin_token.use_case';
-import { AuthRequest } from '../../models/auth_request.model';
+import { Injectable, UnauthorizedException, CanActivate, ExecutionContext } from '@nestjs/common';
 import { BEARER_KEY } from '../helpers/constants';
+import { AuthRequest } from '../../models/auth_request.model';
+import { GetUserUseCase } from 'src/core/application/use_cases/user/get_user.use_case';
+import { VerifyUserTokenUseCase } from 'src/core/application/use_cases/user/verify_user_token.use_case';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Injectable()
-class AdminMiddleware implements CanActivate {
+class UserMiddleware implements CanActivate {
   constructor(
-    private readonly verifyTokenUseCase: VerifyAdminTokenUseCase,
-    private readonly getAdminUserUseCase: GetAdminUserUseCase,
+    private readonly verifyTokenUseCase: VerifyUserTokenUseCase,
+    private readonly getUserUseCase: GetUserUseCase,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -28,9 +28,9 @@ class AdminMiddleware implements CanActivate {
 
     try {
       const uid = await this.verifyTokenUseCase.execute(token);
-      const adminUser = await this.getAdminUserUseCase.execute(uid);
+      const user = await this.getUserUseCase.execute(uid);
 
-      if (!adminUser.isAdmin) {
+      if (!user.preference) {
         return false;
       }
 
@@ -51,4 +51,4 @@ class AdminMiddleware implements CanActivate {
 // Public Interface
 // -------------------------------
 
-export { AdminMiddleware };
+export { UserMiddleware };

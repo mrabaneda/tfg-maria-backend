@@ -3,9 +3,9 @@
 // --------------------------------
 
 import { Controller, Get, HttpCode, HttpStatus, Delete, Post, Param, Body, UseGuards } from '@nestjs/common';
-import { CreateAdminUserUseCase } from 'src/core/application/use_cases/create_admin_user.use_case';
-import { DeleteAdminUserUseCase } from 'src/core/application/use_cases/delete_admin_user.use_case';
-import { GetAdminUsersUseCase } from 'src/core/application/use_cases/get_admin_users.use_case';
+import { CreateAdminUserUseCase } from 'src/core/application/use_cases/admin/create_admin_user.use_case';
+import { DeleteAdminUserUseCase } from 'src/core/application/use_cases/admin/delete_admin_user.use_case';
+import { GetAdminUsersUseCase } from 'src/core/application/use_cases/admin/get_admin_users.use_case';
 import { UID } from 'src/core/domain/value_objects/types';
 import { AdminUserCreateDto } from '../dtos/admin_user_create.dto';
 import { AdminUserFactory } from '../factory/admin_user.factory';
