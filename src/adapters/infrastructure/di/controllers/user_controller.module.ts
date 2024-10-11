@@ -22,4 +22,4 @@ class UserControllerModule {}
 // Public Interface
 // --------------------------------
 
-export default UserControllerModule;
+export { UserControllerModule };
