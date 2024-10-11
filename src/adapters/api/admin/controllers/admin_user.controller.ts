@@ -16,7 +16,7 @@ import { AdminUserDto } from '../dtos/admin_user.dto';
 // Helpers
 // --------------------------------
 
-//@UseGuards(AdminMiddleware) // TODO: uncomment when try form front
+@UseGuards(AdminMiddleware)
 @Controller('admin')
 class AdminUserController {
   constructor(
