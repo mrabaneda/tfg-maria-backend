@@ -7,8 +7,7 @@ import { CreateAdminUserUseCaseModule } from '../use_cases/admin/create_admin_us
 import { DeleteAdminUserUseCaseModule } from '../use_cases/admin/delete_admin_user_use_case.module';
 import { GetAdminUsersUseCaseModule } from '../use_cases/admin/get_admin_users_use_case.module';
 import { AdminUserController } from 'src/adapters/api/admin/controllers/admin_user.controller';
-import { VerifyAdminTokenUseCaseModule } from '../use_cases/admin/verify_admin_token_use_case.module';
-import { GetAdminUserUseCaseModule } from '../use_cases/admin/get_admin_user_use_case.module';
+import { VerifyTokenUseCaseModule } from '../use_cases/auth/verify_token_use_case.module';
 
 // --------------------------------
 // Helpers
@@ -16,11 +15,10 @@ import { GetAdminUserUseCaseModule } from '../use_cases/admin/get_admin_user_use
 
 @Module({
   imports: [
+    VerifyTokenUseCaseModule,
     CreateAdminUserUseCaseModule,
     DeleteAdminUserUseCaseModule,
     GetAdminUsersUseCaseModule,
-    GetAdminUserUseCaseModule,
-    VerifyAdminTokenUseCaseModule,
   ],
   controllers: [AdminUserController],
 })

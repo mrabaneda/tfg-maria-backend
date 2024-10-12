@@ -2,10 +2,11 @@
 // Requirements
 // --------------------------------
 
-import { AdminUserCreateModel } from 'src/core/domain/models/admin_user_create.model';
 import { AdminUserCreateDto } from '../dtos/admin_user_create.dto';
 import { AdminUserEntity } from 'src/core/domain/entities/admin_user.entity';
 import { AdminUserDto } from '../dtos/admin_user.dto';
+import { AdminUserCreatePartialModel } from 'src/core/domain/models/admin_user_create_partial.model';
+import { extname } from 'path';
 
 // --------------------------------
 // Helpers
@@ -14,22 +15,20 @@ import { AdminUserDto } from '../dtos/admin_user.dto';
 class AdminUserFactory {
   static adminUserEntityToDto(adminUserEntity: AdminUserEntity): AdminUserDto {
     return {
+      uid: adminUserEntity.uid,
       email: adminUserEntity.email,
-      createdAt: adminUserEntity.createdAt,
-      isAdmin: adminUserEntity.isAdmin,
       name: adminUserEntity.name,
       photoUrl: adminUserEntity.photoUrl,
-      updatedAt: adminUserEntity.updatedAt,
-      userId: adminUserEntity.userId,
     };
   }
 
-  static createAdminUserDtoToModel(dto: AdminUserCreateDto): AdminUserCreateModel {
+  static createAdminUserDtoToModel(file: Express.Multer.File, dto: AdminUserCreateDto): AdminUserCreatePartialModel {
     return {
       email: dto.email,
       name: dto.name,
       password: dto.password,
-      photoUrl: dto.photoUrl,
+      imageBuffer: file.buffer,
+      imageExtension: extname(file.originalname),
     };
   }
 }

@@ -3,17 +3,16 @@
 // --------------------------------
 
 import { PreferencesTypeEnum } from '../enum/preferences_type.enum';
+import { UID } from '../value_objects/types';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 interface UserCreateModel {
-  email: string;
-  password: string;
-  name: string;
-  photoUrl: string;
-  preference: PreferencesTypeEnum;
+  readonly uid: UID;
+  readonly name: string;
+  readonly preference: PreferencesTypeEnum;
 }
 
 // --------------------------------

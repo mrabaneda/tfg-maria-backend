@@ -10,13 +10,11 @@ import { PreferencesTypeEnum } from 'src/core/domain/enum/preferences_type.enum'
 // --------------------------------
 
 class UserDto {
-  userId: UID;
-  name: string | null;
-  email: string | null;
-  photoUrl: string | null;
-  createdAt: Date;
-  updatedAt: Date | null;
-  preference: PreferencesTypeEnum | null;
+  uid: UID;
+  name: string;
+  email: string;
+  photoUrl: string;
+  preference: PreferencesTypeEnum;
 }
 
 // --------------------------------

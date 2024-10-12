@@ -3,15 +3,16 @@
 // --------------------------------
 
 import { Module } from '@nestjs/common';
-import { UserServiceModule } from '../../services/user_service.module';
-import { GetUserUseCase } from 'src/core/application/use_cases/user/get_user.use_case';
+import { GetUserUseCase } from 'src/core/use_cases/user/get_user.use_case';
+import { UserRepositoryModule } from '../../repositories/user_repository.module';
+import { LoginRepositoryModule } from '../../repositories/login_repository.module';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Module({
-  imports: [UserServiceModule],
+  imports: [UserRepositoryModule, LoginRepositoryModule],
   providers: [GetUserUseCase],
   exports: [GetUserUseCase],
 })

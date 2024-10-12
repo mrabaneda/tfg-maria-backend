@@ -1,12 +1,20 @@
 // --------------------------------
+// Requirements
+// --------------------------------
+
+import { UID } from "../value_objects/types";
+
+// --------------------------------
 // Helpers
 // --------------------------------
 
 interface AdminUserCreateModel {
-  email: string;
-  password: string;
-  name: string;
-  photoUrl: string;
+  readonly uid: UID;
+  readonly email: string;
+  readonly name: string;
+  readonly photoUrl: string;
+  readonly photoRelativePath: string;
+  readonly photoName: string;
 }
 
 // --------------------------------

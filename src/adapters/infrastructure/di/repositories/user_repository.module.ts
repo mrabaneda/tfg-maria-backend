@@ -3,15 +3,15 @@
 // --------------------------------
 
 import { Module } from '@nestjs/common';
-import { BaseUserRepository } from 'src/core/domain/ports/repositories/user_repository.abstract';
-import { FirebaseAuthUserRepository } from '../../frameworks/firebase_auth/repositories/firebase_auth_user.repository';
+import { BaseUserRepository } from 'src/core/domain/ports/repositories/user.repository';
+import { FirestoreUserRepository } from '../../frameworks/firestore/repositories/firestore_user.repository';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Module({
-  providers: [{ provide: BaseUserRepository, useClass: FirebaseAuthUserRepository }],
+  providers: [{ provide: BaseUserRepository, useClass: FirestoreUserRepository }],
   exports: [BaseUserRepository],
 })
 class UserRepositoryModule {}

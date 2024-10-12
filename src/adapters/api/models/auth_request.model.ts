@@ -11,6 +11,7 @@ import { UID } from 'src/core/domain/value_objects/types';
 
 interface AuthRequest extends Request {
   uid: UID;
+  isAdmin: boolean;
 }
 
 // --------------------------------

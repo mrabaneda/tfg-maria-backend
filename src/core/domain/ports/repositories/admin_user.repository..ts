@@ -11,12 +11,10 @@ import { UID } from '../../value_objects/types';
 // --------------------------------
 
 abstract class BaseAdminUserRepository {
-  abstract getOneOrFail(uid: UID): Promise<AdminUserEntity>;
   abstract get(): Promise<AdminUserEntity[]>;
+  abstract getOneOrFail(uid: UID): Promise<AdminUserEntity>;
   abstract create(createModel: AdminUserCreateModel): Promise<void>;
-  //abstract edit() : Promise<AdminUserEntity>;  TODO: Pensar si vamos a necesitar esto
   abstract delete(uid: UID): Promise<void>;
-  abstract verifyToken(token: string): Promise<UID>;
 }
 
 // --------------------------------

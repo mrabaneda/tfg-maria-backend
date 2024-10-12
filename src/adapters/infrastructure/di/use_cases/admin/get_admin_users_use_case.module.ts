@@ -3,15 +3,15 @@
 // --------------------------------
 
 import { Module } from '@nestjs/common';
-import { GetAdminUsersUseCase } from 'src/core/application/use_cases/admin/get_admin_users.use_case';
-import { AdminUserServiceModule } from '../../services/admin_user_service.module';
+import { GetAdminUsersUseCase } from 'src/core/use_cases/admin/get_admin_users.use_case';
+import { AdminUserRepositoryModule } from '../../repositories/admin_user_repository.module';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Module({
-  imports: [AdminUserServiceModule],
+  imports: [AdminUserRepositoryModule],
   providers: [GetAdminUsersUseCase],
   exports: [GetAdminUsersUseCase],
 })

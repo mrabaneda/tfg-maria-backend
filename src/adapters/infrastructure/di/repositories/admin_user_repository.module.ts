@@ -4,14 +4,14 @@
 
 import { Module } from '@nestjs/common';
 import { BaseAdminUserRepository } from 'src/core/domain/ports/repositories/admin_user.repository.';
-import { FirebaseAuthAdminUserRepository } from '../../frameworks/firebase_auth/repositories/firebase_auth_admin_user.repository';
+import { FirestoreAdminUserRepository } from '../../frameworks/firestore/repositories/firestore_admin_user.repository';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
 @Module({
-  providers: [{ provide: BaseAdminUserRepository, useClass: FirebaseAuthAdminUserRepository }],
+  providers: [{ provide: BaseAdminUserRepository, useClass: FirestoreAdminUserRepository }],
   exports: [BaseAdminUserRepository],
 })
 class AdminUserRepositoryModule {}
