@@ -57,7 +57,7 @@ class AdminUserController {
   @UseInterceptors(
     FileInterceptor('image', {      
       storage: memoryStorage(),
-      fileFilter(req, file, cb) {
+      fileFilter(_, file, cb) {
         if (!file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
           return cb(new Error('only-images-allowed'), false);
         }

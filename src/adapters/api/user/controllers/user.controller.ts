@@ -11,9 +11,9 @@ import {
   Post,
   Param,
   Body,
-  UseGuards,
   UseInterceptors,
   UploadedFiles,
+  UseGuards,
 } from '@nestjs/common';
 import { UID } from 'src/core/domain/value_objects/types';
 import { CreateUserUseCase } from 'src/core/use_cases/user/create_user.use_case';
@@ -21,16 +21,17 @@ import { DeleteUserUseCase } from 'src/core/use_cases/user/delete_user.use_case'
 import { GetUsersUseCase } from 'src/core/use_cases/user/get_users.use_case';
 import { UserDto } from '../dtos/user.dto';
 import { UserCreateDto } from '../dtos/user_create.dto';
-import { UserMiddleware } from '../../middleware/user/user.middleware';
-import { AnyFilesInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 import { UserFactory } from '../factory/user.factory';
+import { UserMiddleware } from '../../middleware/user/user.middleware';
+import { AdminMiddleware } from '../../middleware/admin/admin.middleware';
 
 // --------------------------------
 // Helpers
 // --------------------------------
 
-@UseGuards(UserMiddleware)
+@UseGuards(UserMiddleware, AdminMiddleware)
 @Controller('user')
 class UserController {
   constructor(
@@ -56,7 +57,7 @@ class UserController {
   @UseInterceptors(
     AnyFilesInterceptor({
       storage: memoryStorage(),
-      fileFilter(req, file, cb) {
+      fileFilter(_, file, cb) {
         if (!file.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
           return cb(new Error('only-images-allowed'), false);
         }
