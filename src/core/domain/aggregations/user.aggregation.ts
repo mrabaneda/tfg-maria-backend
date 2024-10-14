@@ -11,7 +11,7 @@ import { UserEntity } from '../entities/user.entity';
 
 interface UserAggregation {
   readonly user: UserEntity;
-  readonly login: LoginEntity;  
+  readonly login: LoginEntity;
 }
 
 // --------------------------------
