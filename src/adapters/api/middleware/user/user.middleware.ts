@@ -30,7 +30,6 @@ class UserMiddleware implements CanActivate {
     } catch (_) {
       throw new UnauthorizedException();
     }
-    
     return true;
   }
 
