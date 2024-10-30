@@ -1,8 +1,22 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+// --------------------------------
+// Requirements
+// --------------------------------
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
-}
-bootstrap();
+import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core';
+
+// --------------------------------
+// Public Interface
+// --------------------------------
+
+(async () => {
+  const nestApplication = await NestFactory.create(AppModule);
+
+  nestApplication.enableCors({
+    methods: ['GET', 'POST', 'DELETE'],
+    credentials: true,
+    origin: process.env.WHITE_LIST!.split(';'),
+  });
+
+  await nestApplication.listen(Number(process.env.PORT!));
+})();

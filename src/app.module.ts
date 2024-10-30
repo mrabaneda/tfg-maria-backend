@@ -1,11 +1,24 @@
+// --------------------------------
+// Requirements
+// --------------------------------
+
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { SetUpModule } from './setup.module';
+import { AdminUserControllerModule } from './adapters/infrastructure/di/controllers/admin_user_controller.module';
+import { UserControllerModule } from './adapters/infrastructure/di/controllers/user_controller.module';
+import { LoginControllerModule } from './adapters/infrastructure/di/controllers/login_controller.module';
+
+// --------------------------------
+// Helpers
+// --------------------------------
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [SetUpModule, AdminUserControllerModule, UserControllerModule, LoginControllerModule],
 })
-export class AppModule { }
+class AppModule {}
+
+// --------------------------------
+// Public Interface
+// --------------------------------
+
+export { AppModule };
