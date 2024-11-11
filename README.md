@@ -1,8 +1,25 @@
-# Backend App gestión de usuarios
+# Backend App Gestión para Administradores
+
 ## Trabajo Fin de Grado
 
-Descripción: 
+## 🚀 Tecnologías Usadas
 
->>> Este proyecto implementa un backend Node.js con NestJS para la aplicación final de Flutter. Utiliza MySQL para almacenar la información de los usuarios y Docker para el despliegue. El backend ofrece funcionalidades de autenticación, autorización y gestión de perfiles de usuario.
+- 🖥️ **Node.js**
+- ⚙️ **NestJS**
+- 🔐 **Firebase Authentication**
+- 🗂️ **Firestore**
 
------ 
+## ⚙️ Funcionalidades
+
+- Backend intermedio para una app móvil y una app React (Trabajo Fin de Grado).
+- Autenticación y autorización de usuarios.
+- Gestión de perfiles de usuario.
+- Gestión de administración, tareas y listas personalizadas.
+
+## 🛠️ Instalación
+
+No requiere instalación adicional.
+
+## 📝 Autora
+
+María Rabaneda Sierra
